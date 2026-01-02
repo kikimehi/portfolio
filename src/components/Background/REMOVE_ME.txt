@@ -1,0 +1,1 @@
+Deleted `DynamicBackground.module.css` — kept as placeholder during editing. You can safely remove this file from the repository if desired.

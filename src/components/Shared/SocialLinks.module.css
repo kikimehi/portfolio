@@ -1,0 +1,50 @@
+.iconBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.02);
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, filter .12s ease;
+  overflow: hidden;
+}
+
+.iconBtn img { width: 20px; height: 20px; display:block; transition: filter .12s ease, opacity .12s ease; }
+
+/* keep lift effect, but move brand color handling to specific classes */
+.iconBtn:hover { transform: translateY(-3px); }
+
+/* Brand-specific hover states */
+.github:hover {
+  background: rgba(36,41,47,0.12);
+  box-shadow: 0 4px 10px rgba(36,41,47,0.12);
+}
+.github:hover img { filter: invert(1) brightness(2); }
+
+.facebook:hover {
+  background: rgba(24,119,242,0.12);
+  box-shadow: 0 4px 10px rgba(24,119,242,0.12);
+}
+.facebook:hover img { filter: invert(1) brightness(2); }
+
+.instagram:hover {
+  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 35%, #8134af 65%, #515bd4 100%);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.instagram:hover img { filter: invert(1) brightness(2); }
+
+/* keyboard focus styles */
+.github:focus-visible, .github:focus {
+  outline: 2px solid rgba(36,41,47,0.24);
+  outline-offset: 2px;
+}
+.facebook:focus-visible, .facebook:focus {
+  outline: 2px solid rgba(24,119,242,0.24);
+  outline-offset: 2px;
+}
+.instagram:focus-visible, .instagram:focus {
+  outline: 2px solid rgba(255,255,255,0.14);
+  outline-offset: 2px;
+}
+
