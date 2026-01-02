@@ -289,7 +289,36 @@ npm install -D vitest @testing-library/react @testing-library/jest-dom
 
 ## Deployment
 - Vercel or Netlify are recommended — they automatically detect Vite apps and provide preview deployments.
-- Set environment variables (`VITE_FORMSPREE_ENDPOINT`, `VITE_GITHUB_TOKEN`) in the hosting UI.
+
+**Netlify (recommended) — quick steps:**
+1. In Netlify, connect this repository and set the **Build command** to `npm run build` and the **Publish directory** to `dist`.
+2. Add any required environment variables (for example: `VITE_FORMSPREE_ENDPOINT`, `VITE_GITHUB_TOKEN`) in the Netlify UI under Site Settings → Build & deploy → Environment.
+3. This project includes a `public/_redirects` file and a `netlify.toml` with a redirect rule so client-side routes are served by `index.html` (SPA routing). The `_redirects` file contains:
+
+```
+/* /index.html 200
+```
+
+The `netlify.toml` also configures the build command and publish directory and includes an equivalent redirect rule.
+
+**GitHub Pages — quick steps:**
+1. For a project site (e.g., `https://kikimehi.github.io/portfolio/`), set Vite `base` to `/portfolio/` — this project is already configured with `base: '/portfolio/'` in `vite.config.js`.
+2. This repo already includes `gh-pages` in `devDependencies`. Add the following npm scripts (already added):
+
+```json
+"predeploy": "npm run build",
+"deploy": "gh-pages -d dist"
+```
+
+Run `npm run deploy` to build and publish the `dist` folder to the `gh-pages` branch.
+
+3. SPA routing on GitHub Pages is limited. To provide a fallback, this project includes a `public/404.html` that redirects users back to the project root (`https://kikimehi.github.io/portfolio/`) so navigating to deep links is less confusing (note: deep-links won't preserve the original path). If you need full SPA routing behavior, prefer Netlify or Vercel.
+
+**Testing locally:**
+- Build: `npm run build`
+- Serve `dist` with a static server (e.g., `npx serve dist`) and verify the site works at the project path.
+
+If you want, I can run a local build to verify the site and test deploy steps for you.
 
 ---
 
