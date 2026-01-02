@@ -2,20 +2,33 @@ import React from 'react'
 import styles from './Projects.module.css'
 import projects from '../../data/projects'
 
-// Map normalized tech names to local SVG assets in src/assets
+// Asset imports (so Vite rewrites URLs correctly for base paths)
+import jestIcon from '../../assets/jest.svg'
+import javascriptIcon from '../../assets/javascript.svg'
+import reactIcon from '../../assets/react.svg'
+import viteIcon from '../../assets/vite.svg'
+import html5Icon from '../../assets/html5.svg'
+import cssIcon from '../../assets/css.svg'
+import npmIcon from '../../assets/npm.svg'
+import tailwindcssIcon from '../../assets/tailwindcss.svg'
+import gitIcon from '../../assets/git.svg'
+import githubIcon from '../../assets/github.svg'
+import pythonIcon from '../../assets/python.svg'
+
+// Map normalized tech names to local SVG assets
 const techIcons = {
-  jest: '/src/assets/jest.svg',
-  javascript: '/src/assets/javascript.svg',
-  react: '/src/assets/react.svg',
-  vite: '/src/assets/vite.svg',
-  html: '/src/assets/html5.svg',
-  html5: '/src/assets/html5.svg',
-  css: '/src/assets/css.svg',
-  npm: '/src/assets/npm.svg',
-  tailwindcss: '/src/assets/tailwindcss.svg',
-  git: '/src/assets/git.svg',
-  github: '/src/assets/github.svg',
-  python: '/src/assets/python.svg',
+  jest: jestIcon,
+  javascript: javascriptIcon,
+  react: reactIcon,
+  vite: viteIcon,
+  html: html5Icon,
+  html5: html5Icon,
+  css: cssIcon,
+  npm: npmIcon,
+  tailwindcss: tailwindcssIcon,
+  git: gitIcon,
+  github: githubIcon,
+  python: pythonIcon,
 }
 
 export default function Projects() {

@@ -1,4 +1,9 @@
 import React, { useEffect, useRef } from 'react'
+// Statically import Three and Vanta to avoid runtime dynamic-import issues on GitHub Pages
+import * as THREE from 'three'
+import VANTA_NET from 'vanta/dist/vanta.net.min'
+import VANTA_GLOBE from 'vanta/dist/vanta.globe.min'
+import VANTA_WAVES from 'vanta/dist/vanta.waves.min'
 
 // No external CSS required: Vanta handles the visuals.
 export default function DynamicBackground({
@@ -41,22 +46,20 @@ export default function DynamicBackground({
       document.body.style.backgroundColor = cssBg
     }
 
-    async function init() {
+    function init() {
       try {
-        const THREE = (await import('three')).default || (await import('three'))
-
         // pick the requested effect (supporting NET by default). Add more as needed.
         const name = effect?.toUpperCase?.() || 'NET'
         let VANTA_MODULE
         if (name === 'NET') {
-          VANTA_MODULE = (await import('vanta/dist/vanta.net.min')).default || (await import('vanta/dist/vanta.net.min'))
+          VANTA_MODULE = VANTA_NET
         } else if (name === 'GLOBE') {
-          VANTA_MODULE = (await import('vanta/dist/vanta.globe.min')).default || (await import('vanta/dist/vanta.globe.min'))
+          VANTA_MODULE = VANTA_GLOBE
         } else if (name === 'WAVES') {
-          VANTA_MODULE = (await import('vanta/dist/vanta.waves.min')).default || (await import('vanta/dist/vanta.waves.min'))
+          VANTA_MODULE = VANTA_WAVES
         } else {
           // fallback to NET
-          VANTA_MODULE = (await import('vanta/dist/vanta.net.min')).default || (await import('vanta/dist/vanta.net.min'))
+          VANTA_MODULE = VANTA_NET
         }
 
         if (!mounted || !elRef.current) return
@@ -81,6 +84,10 @@ export default function DynamicBackground({
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error('Vanta initialization failed:', err)
+        // as a graceful fallback, show a simple gradient so the hero isn't plain white
+        if (elRef.current) {
+          elRef.current.style.background = `radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), rgba(0,0,0,0))`
+        }
       }
     }
 

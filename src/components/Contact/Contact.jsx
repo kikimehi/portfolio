@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from './Contact.module.css'
 import SocialLinks from '../Shared/SocialLinks'
 import socials from '../../data/socials'
+import linkedinIcon from '../../assets/linkedin-svgrepo-com.svg'
 
 // This component posts form data to the endpoint set in Vite env var:
 // VITE_FORMSPREE_ENDPOINT (e.g. https://formspree.io/f/yourFormId)
@@ -76,7 +77,7 @@ export default function Contact() {
         </div>
 
         <div className={styles.contactItem}>
-          <img src="/src/assets/linkedin-svgrepo-com.svg" alt="LinkedIn" className={styles.contactIcon} />
+          <img src={linkedinIcon} alt="LinkedIn" className={styles.contactIcon} />
           <a className={styles.contactLink} href={socials.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
 
